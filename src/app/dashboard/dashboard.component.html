@@ -1,0 +1,11 @@
+<h3>Top Kittens</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let kitten of kittens" class="col-1-4"
+      routerLink="/detail/{{kitten.id}}">
+    <div class="module kitten">
+      <h4>{{kitten.name}}</h4>
+    </div>
+  </a>
+</div>
+
+<app-kitten-search></app-kitten-search>
