@@ -1,7 +1,18 @@
-<h2>{{kitten.name | uppercase}} Details</h2>
-<div><span>id: </span>{{kitten.id}}</div>
-<div>
-  <label>name:
-    <input [(ngModel)]="kitten.name" placeholder="name"/>
-  </label>
+<h2>My Kittens</h2>
+<ul class="kittens">
+  <li *ngFor="let kitten of kittens"
+    [class.selected]="kitten === selectedKitten"
+    (click)="onSelect(kitten)">
+    <span class="badge">{{kitten.id}}</span> {{kitten.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedKitten">
+  <h2>{{selectedKitten.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedKitten.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedKitten.name" placeholder="name"/>
+    </label>
+  </div>
 </div>
