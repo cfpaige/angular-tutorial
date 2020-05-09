@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { KittenService }  from '../kitten.service';
   styleUrls: [ './kitten-detail.component.css' ]
 })
 export class KittenDetailComponent implements OnInit {
-  kitten: Kitten;
+  @Input() kitten: Kitten;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,5 +31,10 @@ export class KittenDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.kittenService.updateKitten(this.kitten)
+      .subscribe(() => this.goBack());
   }
 }

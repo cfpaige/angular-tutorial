@@ -21,4 +21,19 @@ export class KittensComponent implements OnInit {
     this.kittenService.getKittens()
     .subscribe(kittens => this.kittens = kittens);
   }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.kittenService.addKitten({ name } as Kitten)
+      .subscribe(kitten => {
+        this.kittens.push(kitten);
+      });
+  }
+
+  delete(kitten: Kitten): void {
+    this.kittens = this.kittens.filter(h => h !== kitten);
+    this.kittenService.deleteKitten(kitten).subscribe();
+  }
+
 }
