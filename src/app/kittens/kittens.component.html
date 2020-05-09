@@ -1,11 +1,8 @@
 <h2>My Kittens</h2>
-
 <ul class="kittens">
-  <li *ngFor="let kitten of kittens"
-    [class.selected]="kitten === selectedKitten"
-    (click)="onSelect(kitten)">
-    <span class="badge">{{kitten.id}}</span> {{kitten.name}}
+  <li *ngFor="let kitten of kittens">
+    <a routerLink="/detail/{{kitten.id}}">
+      <span class="badge">{{kitten.id}}</span> {{kitten.name}}
+    </a>
   </li>
 </ul>
-
-<app-kitten-detail [kitten]="selectedKitten"></app-kitten-detail>
